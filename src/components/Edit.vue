@@ -62,7 +62,8 @@ export default {
   data() {
     return {
       customer: {},
-      alert: ""
+      alert: "",
+      jsonServer: "http://localhost:3000/customers/"
     };
   },
   components: {
@@ -70,12 +71,10 @@ export default {
   },
   methods: {
     fetchCustomer(id) {
-      this.$http
-        .get("http://localhost:3000/customers/" + id)
-        .then(function(response) {
-          //   console.log(response);
-          this.customer = response.body;
-        });
+      this.$http.get(this.jsonServer + id).then(function(response) {
+        //   console.log(response);
+        this.customer = response.body;
+      });
     },
     updateCustomers(e) {
       //   console.log(123);
@@ -93,10 +92,7 @@ export default {
           profile: this.customer.profile
         };
         this.$http
-          .put(
-            "http://localhost:3000/customers/" + this.$route.params.id,
-            updateCustomer
-          )
+          .put(this.jsonServer + this.$route.params.id, updateCustomer)
           .then(function(response) {
             // console.log(response);
             this.$router.push({

@@ -35,17 +35,16 @@ export default {
     return {
       customers: [],
       alert: "",
-      filterInput: ""
+      filterInput: "",
+      jsonServer: "http://localhost:3000/customers/"
     };
   },
   methods: {
     fetchCustomers() {
-      this.$http
-        .get("http://localhost:3000/customers/")
-        .then(function(response) {
-          // console.log(response.body);
-          this.customers = response.body;
-        });
+      this.$http.get(this.jsonServer).then(function(response) {
+        // console.log(response.body);
+        this.customers = response.body;
+      });
     },
     //搜索函数
     filterCustomers(customers, filterInput) {

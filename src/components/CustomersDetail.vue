@@ -18,17 +18,17 @@
     </ul>
     <ul class="list-group">
       <li class="list-group-item">
-        <span class="glyphicon glyphicon-phone">：{{customers.edu}}</span>
+        <span class="glyphicon glyphicon-education">：{{customers.edu}}</span>
       </li>
       <li class="list-group-item">
-        <span class="glyphicon glyphicon-envelope">：{{customers.graduationSchool}}</span>
+        <span class="glyphicon glyphicon-book">：{{customers.graduationSchool}}</span>
       </li>
 
       <li class="list-group-item">
-        <span class="glyphicon glyphicon-phone">：{{customers.profession}}</span>
+        <span class="glyphicon glyphicon-briefcase">：{{customers.profession}}</span>
       </li>
       <li class="list-group-item">
-        <span class="glyphicon glyphicon-envelope">： {{customers.profile}}</span>
+        <span class="glyphicon glyphicon-sunglasses">： {{customers.profile}}</span>
       </li>
     </ul>
   </div>
@@ -39,24 +39,21 @@ export default {
   name: "customersdetails",
   data() {
     return {
-      customers: ""
+      customers: "",
+      jsonServer: "http://localhost:3000/customers/"
     };
   },
   methods: {
     fetchCustomers(id) {
-      this.$http
-        .get("http://localhost:3000/customers/" + id)
-        .then(function(response) {
-          // console.log(response.body);
-          this.customers = response.body;
-        });
+      this.$http.get(this.jsonServer + id).then(function(response) {
+        // console.log(response.body);
+        this.customers = response.body;
+      });
     },
     delectCustomer(id) {
-      this.$http
-        .delete("http://localhost:3000/customers/" + id)
-        .then(function(response) {
-          this.$router.push({ path: "/", query: { alert: "用户删除成功！" } });
-        });
+      this.$http.delete(this.jsonServer + id).then(function(response) {
+        this.$router.push({ path: "/", query: { alert: "用户删除成功！" } });
+      });
       //   console.log(id);
     }
   },
