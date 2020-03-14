@@ -7,6 +7,7 @@ import Customers from "./components/Customers"
 import About from "./components/About"
 import Add from "./components/Add"
 import VueResource from "vue-resource"
+import CustomersDetail from "./components/CustomersDetail"
 
 
 Vue.config.productionTip = false
@@ -22,7 +23,8 @@ const router = new VueRouter({
   routes: [
     { path: "/", component: Customers },
     { path: "/about", component: About },
-    { path: "/add", component: Add }
+    { path: "/add", component: Add },
+    { path: "/customer/:id", component: CustomersDetail },
   ]
 })
 

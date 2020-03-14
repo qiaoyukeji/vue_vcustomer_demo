@@ -78,10 +78,13 @@ export default {
           profile: this.customer.profile
         };
         this.$http
-          .post("http://json.gitnote.cn/vcustomers", newCustomer)
+          .post("http://localhost:3000/customers", newCustomer)
           .then(function(response) {
             // console.log(response);
-            this.$router.push({ path: "/" });
+            this.$router.push({
+              path: "/",
+              query: { alert: "用户信息添加成功！" }
+            });
           });
       }
       e.preventDefault();
